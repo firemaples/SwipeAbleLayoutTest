@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.firemaples.dragtest.DragLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dragAbleViewId="@+id/dgv1"
+        app:hardlyMovedThreshold="50dp">
+
+        <View
+            android:id="@+id/dgv1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:background="#F00" />
+
+    </com.firemaples.dragtest.DragLayout>
+
+    <com.firemaples.dragtest.DragLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dragAbleViewId="@+id/dgv2">
+
+        <View
+            android:id="@+id/dgv2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="200dp"
+            android:background="#F00" />
+
+    </com.firemaples.dragtest.DragLayout>
+
+    <com.firemaples.dragtest.DragLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dragAbleViewId="@+id/dgv3">
+
+        <View
+            android:id="@+id/dgv3"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="80dp"
+            android:background="#F00" />
+
+    </com.firemaples.dragtest.DragLayout>
+
+    <com.firemaples.dragtest.DragLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dragAbleViewId="@+id/dgv4">
+
+        <View
+            android:id="@+id/dgv4"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:background="#F00" />
+
+    </com.firemaples.dragtest.DragLayout>
+
+</LinearLayout>

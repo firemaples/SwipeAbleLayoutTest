@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DragLayout">
+        <attr name="dragAbleViewId" format="reference" />
+        <attr name="hardlyMovedThreshold" format="dimension" />
+    </declare-styleable>
+</resources>
