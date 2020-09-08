@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dragAbleViewId="@+id/dgv1"
-        app:hardlyMovedThreshold="100dp"
+        app:actionMovement="100dp"
         app:supportedDirections="LEFT">
 
         <View

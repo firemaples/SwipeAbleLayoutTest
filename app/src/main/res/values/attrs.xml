@@ -8,7 +8,7 @@
     </attr>
     <declare-styleable name="DragLayout">
         <attr name="dragAbleViewId" format="reference" />
-        <attr name="hardlyMovedThreshold" format="dimension" />
+        <attr name="actionMovement" format="dimension" />
         <attr name="supportedDirections" />
     </declare-styleable>
 </resources>
