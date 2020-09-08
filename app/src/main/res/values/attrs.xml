@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="supportedDirections">
+        <flag name="LEFT" value="1" />
+        <flag name="TOP" value="2" />
+        <flag name="RIGHT" value="4" />
+        <flag name="BOTTOM" value="8" />
+    </attr>
     <declare-styleable name="DragLayout">
         <attr name="dragAbleViewId" format="reference" />
         <attr name="hardlyMovedThreshold" format="dimension" />
+        <attr name="supportedDirections" />
     </declare-styleable>
 </resources>

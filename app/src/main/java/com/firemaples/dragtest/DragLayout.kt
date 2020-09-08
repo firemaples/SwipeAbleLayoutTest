@@ -29,9 +29,17 @@ class DragLayout @JvmOverloads constructor(
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(DragLayout::class.java)
+        private const val defaultHardlyMovementThresholdDp = 50
     }
 
     private var dragAbleViewId: Int = 0
+
+    /**
+     * Currently, [SwipeDirection.UP] and [SwipeDirection.DOWN] are not supported.
+     */
+    private var supportedDirections: Set<SwipeDirection> = setOf()
+    private var hardlyMoveThreshold: Float =
+        UiUtils.getPxFromDp(context, defaultHardlyMovementThresholdDp)
 
     init {
         if (attrs != null) {
@@ -39,24 +47,24 @@ class DragLayout @JvmOverloads constructor(
 
             try {
                 dragAbleViewId = typedArray.getResourceId(R.styleable.DragLayout_dragAbleViewId, 0)
-                typedArray.getDimensionPixelSize(R.styleable.DragLayout_hardlyMovedThreshold, 50)
+                hardlyMoveThreshold = typedArray.getDimensionPixelSize(
+                    R.styleable.DragLayout_hardlyMovedThreshold,
+                    UiUtils.getPxFromDp(context, defaultHardlyMovementThresholdDp).toInt()
+                ).toFloat()
+                val supportedDirectionFlags =
+                    typedArray.getInt(R.styleable.DragLayout_supportedDirections, 0)
+                supportedDirections = SwipeDirection.fromFlags(supportedDirectionFlags)
             } finally {
                 typedArray.recycle()
             }
         }
     }
 
-    /**
-     * Currently, [SwipeDirection.UP] and [SwipeDirection.DOWN] are not supported.
-     */
-    val supportedDirections: MutableSet<SwipeDirection> = mutableSetOf(SwipeDirection.LEFT, SwipeDirection.RIGHT)
-
     private val dragAbleView: View by lazy { findViewById(dragAbleViewId) }
     private var dragging: Boolean = false
     private var originalPosition: FloatArray? = null
     private var viewOriginalPosition: FloatArray? = null
     private var previousFingerPosition: FloatArray? = null
-    private val hardlyMoveThreshold: Float = UiUtils.getPxFromDp(context, 50)
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         return when (ev.actionMasked) {
@@ -185,13 +193,15 @@ class DragLayout @JvmOverloads constructor(
         return (rad * 180 / Math.PI + 180) % 360
     }
 
-    enum class SwipeDirection {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT;
+    enum class SwipeDirection(private val flag: Int) {
+        LEFT(1),
+        UP(2),
+        RIGHT(4),
+        DOWN(8);
 
         companion object {
+            fun fromFlags(flags: Int): Set<SwipeDirection> =
+                values().filter { flags and it.flag == it.flag }.toSet()
 
             /**
              * Returns a direction given an angle.

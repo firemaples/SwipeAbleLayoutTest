@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dragAbleViewId="@+id/dgv1"
-        app:hardlyMovedThreshold="50dp">
+        app:hardlyMovedThreshold="100dp"
+        app:supportedDirections="LEFT">
 
         <View
             android:id="@+id/dgv1"
@@ -25,7 +26,8 @@
     <com.firemaples.dragtest.DragLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:dragAbleViewId="@+id/dgv2">
+        app:dragAbleViewId="@+id/dgv2"
+        app:supportedDirections="LEFT|RIGHT">
 
         <View
             android:id="@+id/dgv2"
@@ -40,7 +42,8 @@
     <com.firemaples.dragtest.DragLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:dragAbleViewId="@+id/dgv3">
+        app:dragAbleViewId="@+id/dgv3"
+        app:supportedDirections="LEFT|RIGHT|TOP|BOTTOM">
 
         <View
             android:id="@+id/dgv3"
